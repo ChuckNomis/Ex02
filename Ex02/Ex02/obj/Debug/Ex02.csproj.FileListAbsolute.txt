@@ -1,0 +1,4 @@
+C:\Users\almog\OneDrive\Documents\GitHub\Ex02\Ex02\Ex02\obj\Debug\Ex02.csproj.AssemblyReference.cache
+C:\Users\almog\OneDrive\Documents\GitHub\Ex02\Ex02\Ex02\obj\Debug\Interop.Accessibility.dll
+C:\Users\almog\OneDrive\Documents\GitHub\Ex02\Ex02\Ex02\obj\Debug\Ex02.csproj.ResolveComReference.cache
+C:\Users\almog\OneDrive\Documents\GitHub\Ex02\Ex02\Ex02\obj\Debug\Ex02.csproj.CoreCompileInputs.cache
