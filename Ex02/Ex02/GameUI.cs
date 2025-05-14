@@ -1,108 +1,101 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Ex02.ConsoleUtils;
 
 namespace Ex02
 {
     internal class GameUI
     {
-        public struct ListOfPinsAndResult
+        private int _maxGuesses;
+
+        public int getNumberOfGuesses()
         {
-            public string Pins;
-            public string Result; 
-        }
-
-        private List<ListOfPinsAndResult> showAttempts;
-
-
-
-        public void   InitializeBoard(int i_maxAttempts)
-        {
-            showAttempts = new List<ListOfPinsAndResult>();
-
-            showAttempts.Add(new ListOfPinsAndResult { Pins = "####", Result = "" });
-
-            for (int i = 0; i < maxAttempts; i++) 
-            {
-                showAttempts.Add(new ListOfPinsAndResult { Pins = "", Result = "" }); 
-            }
-        }
-
-        public void   addGuessAndResult(int i_attemptIndex, string i_guess, string i_feedback)
-        {
-            showAttempts[attemptIndex + 1] = new ListOfPinsAndResult { Pins = guess, Result = feedback };
-        }
-
-        public void   printTheBoard()
-        {
-            string pins;
-            string result; 
-
-            Console.WriteLine("Current board status: ");
-            Console.WriteLine("|Pins:  |Result:  |");
-            Console.WriteLine("===================");
-
-            foreach (ListOfPinsAndResult attemp in showAttempts)
-            {
-                pins = string.IsNullOrEmpty(attemp.Pins) ? "       " : attemp.Pins.PadRight(7);
-                result = string.IsNullOrEmpty(attemp.Result) ? "         " : attemp.Result.PadRight(9);
-                Console.WriteLine($"|{pins}|{result}|");
-                Console.WriteLine("===================");
-            }
-        }
-
-        public string getUserGuess()
-        {
-            string input = Console.ReadLine().ToUpper(); 
-            return input;
-        }
-
-        public int    getNumberOfGuesses()
-        {
-            int    numberOfGuesses;
+            int numberOfGuesses;
             string input;
 
-            Console.WriteLine("Enter a number of guesses between 4 and 10")
-
+            Console.WriteLine("Enter number of guesses (4–10):");
             while (true)
             {
                 input = Console.ReadLine();
-
-                if (int.TryParse(input, out numberOfGuesses) && numberOfGuesses >= 4 && numberOfGuesses <= 10)
+                if (int.TryParse(input, out numberOfGuesses)
+                    && numberOfGuesses >= 4
+                    && numberOfGuesses <= 10)
                 {
+                    _maxGuesses = numberOfGuesses;
                     return numberOfGuesses;
                 }
 
-                Console.WriteLine("Invalid number. Enter a number between 4 and 10."); 
+                Console.WriteLine("Invalid. Please enter an integer between 4 and 10:");
             }
         }
 
-        public void   PrintMessage(string i_type)
+        public void clearScreen()
         {
-            switch (type) {
-                case "PromptForGuess":
-                    Console.WriteLine("Enter your guess(4 letters A-H): "); break;
+            Screen.Clear();
+        }
 
-                case "InvalidInpt":
-                    Console.WriteLine("Invalid input! Must be 4 different letters A-H."); break;
+        public void printTheBoard(List<Pin> pinsHistory,List<Result> feedbackHistory)
+        {
+            const int ColWidth = 9;
+            string horizontalLine = "|=========|=======|";
 
-                case "victory":
-                    Console.WriteLine("Congratulations! You won!"); break;
+            Console.WriteLine("|" + "Pins:    " + "|" + "Result:" + "|");
+            Console.WriteLine(horizontalLine);
+            Console.WriteLine("|" + " # # # # " + "|       |");
+            Console.WriteLine(horizontalLine);
 
-                case "Defeat":
-                    Console.WriteLine("You've run out of attempts, You lose!"); break;
+            for (int row = 0; row < _maxGuesses; row++)
+            {
+                string pinsCell;
+                string resultCell;
 
-                case "Exit":
-                    Console.WriteLine("Goodbye!"); break;
+                if (row < pinsHistory.Count)
+                {
+                    pinsCell = string.Join(" ", pinsHistory[row]._pinValue.ToCharArray());
+                    resultCell = string.Join(" ", feedbackHistory[row]._result.ToCharArray());
+                }
+                else
+                {
+                    pinsCell = string.Empty.PadRight(ColWidth);
+                    resultCell = string.Empty.PadRight(ColWidth);
+                }
+
+                Console.WriteLine("| "+ pinsCell + " |"+ resultCell+ "|");
+                Console.WriteLine(horizontalLine);
             }
         }
 
-        public void   clearScreen()
+        // if work on this
+        public Pin getUserGuess()
         {
-            Screen.Clear(); 
+            Console.WriteLine("Enter your guess (4 letters A–H) or Q to quit:");
+            string input = Console.ReadLine().ToUpper();
+            return new Pin(input);
+        }
+
+        public void showWin()
+        {
+            Console.WriteLine("Congratulations! You cracked the code!");
+        }
+
+        public void showLose()
+        {
+            Console.WriteLine("You've run out of attempts, you lose!");
+        }
+
+        // need work on this
+        public void showPlayAgain(ref bool keepPlaying)
+        {
+            Console.WriteLine("Play again? (Y/N):");
+            string answer = Console.ReadLine().Trim().ToUpper();
+            if (answer == "Y")
+            {
+                keepPlaying = true;
+            }
+            else
+            {
+                keepPlaying = false;
+            }
         }
     }
 }
