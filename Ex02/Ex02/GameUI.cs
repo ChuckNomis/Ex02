@@ -65,7 +65,7 @@ namespace Ex02
             }
         }
 
-        // if work on this
+        // need work on this
         public Pin getUserGuess()
         {
             Console.WriteLine("Enter your guess (4 letters A–H) or Q to quit:");
@@ -96,6 +96,12 @@ namespace Ex02
             {
                 keepPlaying = false;
             }
+        }
+
+        // need work on this
+        public void showExit()
+        {
+            Console.WriteLine("Thanks for playing! Goodbye!");
         }
     }
 }

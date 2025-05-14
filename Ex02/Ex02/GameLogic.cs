@@ -28,6 +28,12 @@ namespace Ex02
                     gameUI.clearScreen();
                     gameUI.printTheBoard(_historyOfPins,_historyOfFeedbacks); 
                     Pin currentPin = gameUI.getUserGuess();
+                    if (currentPin._pinValue == "q")
+                    {
+                        gameUI.clearScreen();
+                        gameUI.showExit();
+                        return;
+                    }
                     Result currentResult = new Result(currentPin, _targetPin);
                     _historyOfFeedbacks.Add(currentResult);
                     _historyOfPins.Add(currentPin);
