@@ -15,29 +15,40 @@ namespace Ex02
 
         public void StartGame()
         {
-            GameUI gameUI = new GameUI();
-            bool _keepPlaying = true;
+            GameUI       gameUI = new GameUI();
+            bool         _keepPlaying = true;
+            bool         _gameWon;
+            int          _numberOfGuesses;
+            List<Pin>    _historyOfPins;
+            List<Result> _historyOfFeedbacks;
+            Pin          _targetPin;
+            Pin          currentPin;
+            Result       currentResult;
             while (_keepPlaying) {
-                bool _gameWon = false;
-                int _numberOfGuesses = gameUI.getNumberOfGuesses();
-                List<Pin> _historyOfPins = new List<Pin>();
-                List<Result> _historyOfFeedbacks = new List<Result>();
-                Pin _targetPin = Pin.GenerateTargetPin();
+                _gameWon = false;
+                _numberOfGuesses = gameUI.getNumberOfGuesses();
+                _historyOfPins = new List<Pin>();
+                _historyOfFeedbacks = new List<Result>();
+                _targetPin = Pin.GenerateTargetPin();
+
                 for (int i = 0; i < _numberOfGuesses; i++)
                 {
                     gameUI.clearScreen();
                     gameUI.printTheBoard(_historyOfPins,_historyOfFeedbacks); 
-                    Pin currentPin = gameUI.getUserGuess();
-                    if (currentPin._pinValue == "q")
+                    currentPin = gameUI.getUserGuess();
+
+                    if (currentPin._pinValue == "Q")
                     {
                         gameUI.clearScreen();
                         gameUI.showExit();
                         return;
                     }
-                    Result currentResult = new Result(currentPin, _targetPin);
+
+                    currentResult = new Result(currentPin, _targetPin);
                     _historyOfFeedbacks.Add(currentResult);
                     _historyOfPins.Add(currentPin);
-                    if (currentResult.getResult() == "VVVV")
+
+                    if (currentResult.getResult() == Result.WinResult)
                     {
                         _gameWon = true;
                         gameUI.clearScreen();
@@ -46,6 +57,7 @@ namespace Ex02
                         break;
                     }
                 }
+
                 if(!_gameWon)
                 {
                     gameUI.showLose();

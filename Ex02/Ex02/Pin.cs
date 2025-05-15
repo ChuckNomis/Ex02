@@ -9,10 +9,12 @@ namespace Ex02
     internal class Pin
     {
         public string _pinValue { get; }
+
         public Pin(string Pin)
         {
-            _pinValue = Pin;
+            _pinValue = Pin; 
         }
+
         public static Pin GenerateTargetPin()
         {
             Random     _rng = new Random();
@@ -20,15 +22,17 @@ namespace Ex02
             int        SequenceLength = 4;
             List<char> pool = AllowedLetters.ToList();
             char[]     chars = new char[SequenceLength];
+            int idx;
+            string result;
 
             for (int i = 0; i < SequenceLength; i++)
             {
-                int idx = _rng.Next(pool.Count);
+                idx = _rng.Next(pool.Count);
                 chars[i] = pool[idx];
                 pool.RemoveAt(idx);
             }
 
-            string result = new string(chars);
+            result = new string(chars);
             return new Pin(result);
         }
 
