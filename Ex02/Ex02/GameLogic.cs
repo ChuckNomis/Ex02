@@ -24,7 +24,9 @@ namespace Ex02
             Pin          _targetPin;
             Pin          currentPin;
             Result       currentResult;
-            while (_keepPlaying) {
+
+            while (_keepPlaying) 
+            {
                 _gameWon = false;
                 _numberOfGuesses = gameUI.getNumberOfGuesses();
                 _historyOfPins = new List<Pin>();
@@ -33,14 +35,14 @@ namespace Ex02
 
                 for (int i = 0; i < _numberOfGuesses; i++)
                 {
-                    gameUI.clearScreen();
-                    gameUI.printTheBoard(_historyOfPins,_historyOfFeedbacks); 
-                    currentPin = gameUI.getUserGuess();
+                    gameUI.ClearScreen();
+                    gameUI.PrintTheBoard(_historyOfPins,_historyOfFeedbacks); 
+                    currentPin = gameUI.GetUserGuess();
 
                     if (currentPin._pinValue == "Q")
                     {
-                        gameUI.clearScreen();
-                        gameUI.showExit();
+                        gameUI.ClearScreen();
+                        gameUI.ShowExit();
                         return;
                     }
 
@@ -48,21 +50,25 @@ namespace Ex02
                     _historyOfFeedbacks.Add(currentResult);
                     _historyOfPins.Add(currentPin);
 
-                    if (currentResult.getResult() == Result.WinResult)
+                    if (currentResult.GetResult() == GameConstants.WinResult)
                     {
                         _gameWon = true;
-                        gameUI.clearScreen();
-                        gameUI.printTheBoard(_historyOfPins, _historyOfFeedbacks);
-                        gameUI.showWin();
+                        gameUI.ClearScreen();
+                        gameUI.PrintTheBoard(_historyOfPins, _historyOfFeedbacks);
+                        gameUI.ShowWin();
                         break;
                     }
                 }
 
-                if(!_gameWon)
+                gameUI.ClearScreen();
+                gameUI.PrintTheBoard(_historyOfPins, _historyOfFeedbacks);
+
+                if (!_gameWon)
                 {
-                    gameUI.showLose();
+                    gameUI.ShowLose(_targetPin._pinValue);
+
                 }
-                gameUI.showPlayAgain(ref _keepPlaying);
+                gameUI.ShowPlayAgain(ref _keepPlaying);
             }
 
         }

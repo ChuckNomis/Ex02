@@ -51,5 +51,13 @@
       <HintPath>.lib\Ex02.ConsoleUtils.dll</HintPath>
     </Reference>
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="GameConstants.cs" />
+    <Compile Include="GameLogic.cs" />
+    <Compile Include="GameUI.cs" />
+    <Compile Include="Pin.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Result.cs" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

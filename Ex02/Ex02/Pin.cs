@@ -18,9 +18,9 @@ namespace Ex02
         public static Pin GenerateTargetPin()
         {
             Random     _rng = new Random();
-            string     AllowedLetters = "ABCDEFGH";
-            int        SequenceLength = 4;
-            List<char> pool = AllowedLetters.ToList();
+            string allowedLetters = GameConstants.AllowedLetters;  
+            int        SequenceLength = GameConstants.k_ExpectedLength;
+            List<char> pool = allowedLetters.ToList();
             char[]     chars = new char[SequenceLength];
             int idx;
             string result;

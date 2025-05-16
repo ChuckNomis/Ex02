@@ -8,15 +8,14 @@ namespace Ex02
 {
     internal class Result
     {
-        public const string WinResult = "VVVV";
         public string       _result { get; }
 
         public Result(Pin pin,Pin target)
         {
-            _result = calculateResult (pin._pinValue,  target._pinValue);
+            _result = CalculateResult (pin._pinValue,  target._pinValue);
         }
 
-        private string calculateResult(string i_guessValue, string i_targetValue)
+        private string CalculateResult(string i_guessValue, string i_targetValue)
         {
             int    bulls = 0;
             int    cows = 0; 
@@ -42,7 +41,7 @@ namespace Ex02
                         if (!usedInTarget[j] && i_guessValue[i] == i_targetValue[j])
                         {
                             cows++;
-                            usedInGuess[j] = true;
+                            usedInTarget[j] = true; ;
                             break;
                         }
                     }
@@ -51,7 +50,7 @@ namespace Ex02
             return new string ('V', bulls) + new string ('X', cows);
         }
 
-        public string getResult()
+        public string GetResult()
         {
             return _result;
         }

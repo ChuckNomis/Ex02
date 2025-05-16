@@ -2,3 +2,10 @@ C:\Users\almog\OneDrive\Documents\GitHub\Ex02\Ex02\Ex02\obj\Debug\Ex02.csproj.As
 C:\Users\almog\OneDrive\Documents\GitHub\Ex02\Ex02\Ex02\obj\Debug\Interop.Accessibility.dll
 C:\Users\almog\OneDrive\Documents\GitHub\Ex02\Ex02\Ex02\obj\Debug\Ex02.csproj.ResolveComReference.cache
 C:\Users\almog\OneDrive\Documents\GitHub\Ex02\Ex02\Ex02\obj\Debug\Ex02.csproj.CoreCompileInputs.cache
+C:\Users\almog\OneDrive\Documents\GitHub\Ex02\Ex02\Ex02\bin\Debug\Ex02.exe.config
+C:\Users\almog\OneDrive\Documents\GitHub\Ex02\Ex02\Ex02\bin\Debug\Ex02.exe
+C:\Users\almog\OneDrive\Documents\GitHub\Ex02\Ex02\Ex02\bin\Debug\Ex02.pdb
+C:\Users\almog\OneDrive\Documents\GitHub\Ex02\Ex02\Ex02\bin\Debug\Ex02.ConsoleUtils.dll
+C:\Users\almog\OneDrive\Documents\GitHub\Ex02\Ex02\Ex02\obj\Debug\Ex02.csproj.Up2Date
+C:\Users\almog\OneDrive\Documents\GitHub\Ex02\Ex02\Ex02\obj\Debug\Ex02.exe
+C:\Users\almog\OneDrive\Documents\GitHub\Ex02\Ex02\Ex02\obj\Debug\Ex02.pdb

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Ex02.ConsoleUtils;
+
 
 namespace Ex02
 {
@@ -30,43 +32,39 @@ namespace Ex02
             }
         }
 
-        public void clearScreen()
+        public void ClearScreen()
         {
             Screen.Clear();
         }
 
-        public void printTheBoard(List<Pin> pinsHistory,List<Result> feedbackHistory)
+        public void PrintTheBoard(List<Pin> pinsHistory, List<Result> feedbackHistory)
         {
-            const int ColWidth = 9;
-            string    horizontalLine = "|=========|=======|";
+            string horizontalLine = $"|{new string('=', GameConstants.PinsColWidth + 2)}|{new string('=', GameConstants.ResultColWidth + 2)}|";
 
-            Console.WriteLine("|" + "Pins:    " + "|" + "Result:" + "|");
+            Console.WriteLine($"| {"Pins:",-GameConstants.PinsColWidth} | {"Result:",-GameConstants.ResultColWidth} |");
             Console.WriteLine(horizontalLine);
-            Console.WriteLine("|" + " # # # # " + "|       |");
+            Console.WriteLine($"| {"# # # #",-GameConstants.PinsColWidth} | {"",-GameConstants.ResultColWidth} |");
             Console.WriteLine(horizontalLine);
 
             for (int row = 0; row < _maxGuesses; row++)
             {
-                string pinsCell;
-                string resultCell;
+                string pinsCell = "";
+                string resultCell = "";
 
                 if (row < pinsHistory.Count)
                 {
                     pinsCell = string.Join(" ", pinsHistory[row]._pinValue.ToCharArray());
                     resultCell = string.Join(" ", feedbackHistory[row]._result.ToCharArray());
                 }
-                else
-                {
-                    pinsCell = string.Empty.PadRight(ColWidth);
-                    resultCell = string.Empty.PadRight(ColWidth);
-                }
 
-                Console.WriteLine("| "+ pinsCell + " |"+ resultCell+ "|");
+                Console.WriteLine($"| {pinsCell,-GameConstants.PinsColWidth} | {resultCell,-GameConstants.ResultColWidth} |");
                 Console.WriteLine(horizontalLine);
             }
         }
 
-        public Pin  getUserGuess()
+
+
+        public Pin  GetUserGuess()
         {
             Console.WriteLine("Enter your guess (4 letters A–H) or Q to quit:");
             string input = Console.ReadLine().ToUpper();
@@ -83,8 +81,8 @@ namespace Ex02
         public bool InputValidityCheck(string i_input)
         {
             bool          inputStatus = true;
-            const int     k_ExpectedLength = 4;
-            string        allowedLetters = "ABCDEFGH";
+            int           k_ExpectedLength = GameConstants.k_ExpectedLength;
+            string        allowedLetters = GameConstants.AllowedLetters;
             List<char>    availableLetters = allowedLetters.ToList();
             HashSet<char> seenLetters = new HashSet<char>();
 
@@ -113,17 +111,18 @@ namespace Ex02
             return inputStatus;
         }
 
-        public void showWin()
+        public void ShowWin()
         {
             Console.WriteLine("Congratulations! You cracked the code!");
         }
 
-        public void showLose()
+        public void ShowLose(string i_targetValue)
         {
             Console.WriteLine("You've run out of attempts, you lose!");
+            Console.WriteLine($"the target was: {i_targetValue}");
         }
 
-        public void showPlayAgain(ref bool keepPlaying)
+        public void ShowPlayAgain(ref bool keepPlaying)
         {
             Console.WriteLine("Play again? (Y/N):");
             string answer = Console.ReadLine().Trim().ToUpper();
@@ -145,7 +144,7 @@ namespace Ex02
             }
         }
             
-        public void showExit()
+        public void ShowExit()
         {
             Console.WriteLine("Thanks for playing! Goodbye!");
         }
