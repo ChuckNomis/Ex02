@@ -39,11 +39,11 @@ namespace Ex02
 
         public void PrintTheBoard(List<Pin> pinsHistory, List<Result> feedbackHistory)
         {
-            string horizontalLine = $"|{new string('=', GameConstants.PinsColWidth + 2)}|{new string('=', GameConstants.ResultColWidth + 2)}|";
+            string horizontalLine = $"|{new string('=', GameConstants.k_PinsColWidth + 2)}|{new string('=', GameConstants.k_ResultColWidth + 2)}|";
 
-            Console.WriteLine($"| {"Pins:",-GameConstants.PinsColWidth} | {"Result:",-GameConstants.ResultColWidth} |");
+            Console.WriteLine($"| {"Pins:",-GameConstants.k_PinsColWidth} | {"Result:",-GameConstants.k_ResultColWidth} |");
             Console.WriteLine(horizontalLine);
-            Console.WriteLine($"| {"# # # #",-GameConstants.PinsColWidth} | {"",-GameConstants.ResultColWidth} |");
+            Console.WriteLine($"| {"# # # #",-GameConstants.k_PinsColWidth} | {"",-GameConstants.k_ResultColWidth} |");
             Console.WriteLine(horizontalLine);
 
             for (int row = 0; row < _maxGuesses; row++)
@@ -57,7 +57,7 @@ namespace Ex02
                     resultCell = string.Join(" ", feedbackHistory[row]._result.ToCharArray());
                 }
 
-                Console.WriteLine($"| {pinsCell,-GameConstants.PinsColWidth} | {resultCell,-GameConstants.ResultColWidth} |");
+                Console.WriteLine($"| {pinsCell,-GameConstants.k_PinsColWidth} | {resultCell,-GameConstants.k_ResultColWidth} |");
                 Console.WriteLine(horizontalLine);
             }
         }
@@ -82,7 +82,7 @@ namespace Ex02
         {
             bool          inputStatus = true;
             int           k_ExpectedLength = GameConstants.k_ExpectedLength;
-            string        allowedLetters = GameConstants.AllowedLetters;
+            string        allowedLetters = GameConstants.k_AllowedLetters;
             List<char>    availableLetters = allowedLetters.ToList();
             HashSet<char> seenLetters = new HashSet<char>();
 

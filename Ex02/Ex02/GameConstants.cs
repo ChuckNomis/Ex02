@@ -8,13 +8,13 @@ namespace Ex02
 {
     internal class GameConstants
     {
-        public const string WinResult = "VVVV";
+        public const string k_WinResult = "VVVV";
 
-        public const string AllowedLetters = "ABCDEFGH";
+        public const string k_AllowedLetters = "ABCDEFGH";
         public const int    k_ExpectedLength = 4;
 
-        public const int PinsColWidth = 9;
-        public const int ResultColWidth = 7;
+        public const int k_PinsColWidth = 9;
+        public const int k_ResultColWidth = 7;
 
 
 

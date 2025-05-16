@@ -50,7 +50,7 @@ namespace Ex02
                     _historyOfFeedbacks.Add(currentResult);
                     _historyOfPins.Add(currentPin);
 
-                    if (currentResult.GetResult() == GameConstants.WinResult)
+                    if (currentResult.GetResult() == GameConstants.k_WinResult)
                     {
                         _gameWon = true;
                         gameUI.ClearScreen();
